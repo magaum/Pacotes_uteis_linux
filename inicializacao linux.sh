@@ -51,8 +51,9 @@ menu(){
 	echo 8 - Virtualbox
 	echo 9 - Vim
 	echo 10 - Vlc
-	echo 11 - Instalar tudo
-	echo 12 - Cancelar
+	echo 11 - Whatsapp
+	echo 12 - Instalar tudo
+	echo 13 - Cancelar
 	echo
 	echo -n Selecione um pacote para baixar e instalar: ; read opcao
 	clear
