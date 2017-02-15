@@ -12,52 +12,41 @@
 
 DESTDIR=${DESTDIR:-$(pwd)}
 
-main(){
-	clear
-	echo Instalador de pacotes automatico!
-	echo
-	echo Pacotes e funções disponíveis:
-	echo 1 - Atualizar sistema
-	echo 2 - Atom
-	echo 3 - Chrome
-	echo 4 - Dropbox
-	echo 5 - Opera
-	echo 6 - Spotify
-	echo 7 - Telegram
-	echo 8 - Virtualbox
-	echo 9 - Vim
-	echo 10 - Vlc
-	echo 11 - Whatsapp
-	echo 12 - Instalar tudo
-	echo 13 - Cancelar
-	echo
-	echo -n Selecione um pacote para baixar e instalar: ; read opcao
 
-	tratativa
-	escolhas "$opcao"
+verificaYAD(){
+	programa=$(which yad)
+	if [ "$programa" != "/usr/bin/yad" ];then
+		apt-get install yad
+	else
+		yad --text=" YAD ja instalado. Clique em OK " --width="90" --height="70"
+	fi
 }
 
-menu(){
-	echo Instalador de pacotes automatico!
-	echo
-	echo Pacotes e funções disponíveis:
-	echo 1 - Atualizar sistema
-	echo 2 - Atom
-	echo 3 - Chrome
-	echo 4 - Dropbox
-	echo 5 - Opera
-	echo 6 - Spotify
-	echo 7 - Telegram
-	echo 8 - Virtualbox
-	echo 9 - Vim
-	echo 10 - Vlc
-	echo 11 - Whatsapp
-	echo 12 - Instalar tudo
-	echo 13 - Cancelar
-	echo
-	echo -n Selecione um pacote para baixar e instalar: ; read opcao
-	clear
+main(){
 
+	opcao=$(\
+        yad --entry \
+        --entry-label="Item" \
+        --completion \
+        --editable \
+		--width="350" \
+		--height="400" \
+		--text="
+1 - Atualizar sistema
+2 - Atom
+3 - Chrome
+4 - Dropbox
+5 - Opera
+6 - Spotify
+7 - Telegram
+8 - Virtualbox
+9 - Vim
+10 - VLC
+11 - Whatsapp
+12 - Instalar tudo
+13 - Cancelar
+"
+)
 	tratativa
 	escolhas "$opcao"
 }
@@ -143,12 +132,11 @@ escolhas(){
 
 opcao_1(){
 	clear
-	echo Atualizando sistema!
 	sudo apt-get update
 	sudo apt-get upgrade -y
 	forca_instalacao
-	echo Atualizacao concluida!
-	menu
+
+	main
 }
 
 opcao_2(){	
@@ -158,7 +146,7 @@ opcao_2(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_3(){	
@@ -168,7 +156,7 @@ opcao_3(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_4(){
@@ -178,7 +166,7 @@ opcao_4(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_5(){
@@ -189,7 +177,7 @@ opcao_5(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_6(){
@@ -201,7 +189,7 @@ opcao_6(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_7(){
@@ -214,7 +202,7 @@ opcao_7(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_8(){
@@ -224,7 +212,7 @@ opcao_8(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_9(){
@@ -233,7 +221,7 @@ opcao_9(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_10(){
@@ -242,7 +230,7 @@ opcao_10(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_11(){
@@ -252,7 +240,7 @@ opcao_11(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }	
 
 opcao_12(){
@@ -336,4 +324,13 @@ forca_instalacao(){
 fim(){
 	exit
 }
-main
+
+ROT=$(id -u)
+
+if [ "$ROT" == "0" ];then
+		verificaYAD
+		main
+	else
+		echo "HEY!Acesso apenas para root"
+		exit
+	fi
