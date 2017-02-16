@@ -207,7 +207,7 @@ opcao_9(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_10(){
@@ -216,7 +216,7 @@ opcao_10(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_11(){
