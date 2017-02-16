@@ -114,7 +114,7 @@ escolhas(){
 		"13")
 			clear
 			echo -n Voce realmente deseja sair? [Y/n] ; read opcao
-			while [ $opcao != "y" ] && [ $opcao != "n" ]
+			while [ $opcao != "Y" ] && [ $opcao != "n" ]
 			do
 				clear
 				echo -n Voce realmente deseja sair? [Y/n] ; read opcao
@@ -122,7 +122,7 @@ escolhas(){
 				if [ $opcao = "n" ]
 				then
 					main
-				elif [ $opcao = "y" ]
+				elif [ $opcao = "Y" ]
 				then
 					fim
 				fi
@@ -135,8 +135,13 @@ opcao_1(){
 	sudo apt-get update
 	sudo apt-get upgrade -y
 	forca_instalacao
-
-	main
+	
+	if [ $1 -eq 1 ];then
+		echo "Iniciando proxima instalacao"
+		opcao_2 1
+	else
+		main
+	fi
 }
 
 opcao_2(){	
@@ -146,7 +151,12 @@ opcao_2(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $1 -eq 1 ];then
+		echo "Iniciando proxima instalacao"
+		opcao_3 1
+	else
+		main
+	fi
 }
 
 opcao_3(){	
@@ -156,7 +166,12 @@ opcao_3(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $1 -eq 1 ];then
+		echo "Iniciando proxima instalacao"
+		opcao_4 1
+	else
+		main
+	fi
 }
 
 opcao_4(){
@@ -166,7 +181,12 @@ opcao_4(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $1 -eq 1 ];then
+		echo "Iniciando proxima instalacao"
+		opcao_5 1
+	else
+		main
+	fi
 }
 
 opcao_5(){
@@ -177,7 +197,12 @@ opcao_5(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $1 -eq 1 ];then
+		echo "Iniciando proxima instalacao"
+		opcao_6 1
+	else
+		main
+	fi
 }
 
 opcao_6(){
@@ -189,7 +214,12 @@ opcao_6(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $1 -eq 1 ];then
+		echo "Iniciando proxima instalacao"
+		opcao_7 1
+	else
+		main
+	fi
 }
 
 opcao_7(){
@@ -202,7 +232,12 @@ opcao_7(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $1 -eq 1 ];then
+		echo "Iniciando proxima instalacao"
+		opcao_8 1
+	else
+		main
+	fi
 }
 
 opcao_8(){
@@ -212,7 +247,13 @@ opcao_8(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $1 -eq 1 ];then
+		echo "Iniciando proxima instalacao"
+		opcao_9 1
+	else
+		main
+	fi
+
 }
 
 opcao_9(){
@@ -221,16 +262,27 @@ opcao_9(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $1 -eq 1 ];then
+		echo "Iniciando proxima instalacao"
+		opcao_10 1
+	else
+		main
+	fi
+
 }
 
 opcao_10(){
-	echo Baixando e instalando Vlc
+	echo Baixando e instalando VLC
 	sudo apt-get install vlc -y
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $1 -eq 1 ];then
+		echo "Iniciando proxima instalacao"
+		opcao_11 1
+	else
+		main
+	fi
 }
 
 opcao_11(){
@@ -240,68 +292,17 @@ opcao_11(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $1 -eq 1 ];then
+		echo "Instalacoes concluidas"
+	else
+		main
+	fi
+
 }	
 
 opcao_12(){
-	clear
-	echo Atualizando sistema!
-	sudo apt-get update
-	sudo apt-get upgrade -y
-	forca_instalacao
-	echo Atualizacao concluida!
-	echo Baixando e instalando Atom!
-	wget https://atom.io/download/deb -O "${DESTDIR}"/atom
-	sudo dpkg -i atom
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Chrome
-	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O "${DESTDIR}"/chrome
-	sudo dpkg -i chrome
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Dropbox
-	wget https://www.dropbox.com/download?dl=packages/debian/dropbox_2015.10.28_amd64.deb -O "${DESTDIR}"/dropbox
-	sudo dpkg -i dropbox
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Opera
-	wget http://deb.opera.com/opera/pool/non-free/o/opera-stable/opera-stable_43.0.2442.806_amd64.deb -O "${DESTDIR}"/opera
-	sudo dpkg -i opera
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Spotify
-	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
-	echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
-	sudo apt-get update
-	sudo apt-get install spotify-client -y
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando virtualbox
-	wget download.virtualbox.org/virtualbox/5.1.14/virtualbox-5.1_5.1.14-112924~Debian~jessie_amd64.deb -O "${DESTDIR}"/virtualbox
-	sudo dpkg -i virtualbox
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Vim
-	sudo apt-get install vim -y
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Vlc
-	sudo apt-get install vlc -y
-	forca_instalacao
-	echo Baixando e instalando Whatsapp
-	wget "https://etecspgov-my.sharepoint.com/personal/weslei_pinto_etec_sp_gov_br/_layouts/15/guestaccess.aspx?docid=19ed46acea92b4954b9ad85ca31b04b41&authkey=AYA1XB8vdIevrDSE-SO0m-I" -O "${DESTDIR}"/whatsie
-	dpkg -i whatsie
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Telegram
-	wget https://telegram.org/dl/desktop/linux -O "${DESTDIR}"/telegram
-	tar xvf telegram
-	cd Telegram
-	chmod +x Telegram
-	./Telegram
-	forca_instalacao
-	echo Insltalacoes concluidas!
+
+	opcao_1 1
 	echo -n Voce deseja ficar com os pacotes em sua maquina? [Y/n] ; read opcao
 	while [ $opcao != "y" ] && [ $opcao != "n" ]
 		do
