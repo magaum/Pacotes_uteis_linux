@@ -13,6 +13,7 @@
 DESTDIR=${DESTDIR:-$(pwd)}
 
 main(){
+	clear
 	echo Instalador de pacotes automatico!
 	echo
 	echo Pacotes e funções disponíveis:
@@ -32,6 +33,8 @@ main(){
 	echo
 	echo -n Selecione um pacote para baixar e instalar: ; read opcao
 	clear
+
+	volta_menu=0
 	
 	tratativa
 	escolhas "$opcao"
@@ -122,7 +125,12 @@ opcao_1(){
 	sudo apt-get upgrade -y
 	forca_instalacao
 	echo Atualizacao concluida!
-	main
+	if [ $volta_menu -eq 0 ]
+	then
+		main
+	else
+		opcao_2
+	fi
 }
 
 opcao_2(){	
@@ -132,7 +140,12 @@ opcao_2(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $volta_menu -eq 0 ]
+	then
+		main
+	else
+		opcao_3
+	fi
 }
 
 opcao_3(){	
@@ -142,7 +155,12 @@ opcao_3(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $volta_menu -eq 0 ]
+	then
+		main
+	else
+		opcao_4
+	fi
 }
 
 opcao_4(){
@@ -152,7 +170,12 @@ opcao_4(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $volta_menu -eq 0 ]
+	then
+		main
+	else
+		opcao_5
+	fi
 }
 
 opcao_5(){
@@ -163,7 +186,12 @@ opcao_5(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $volta_menu -eq 0 ]
+	then
+		main
+	else
+		opcao_6
+	fi
 }
 
 opcao_6(){
@@ -175,7 +203,12 @@ opcao_6(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $volta_menu -eq 0 ]
+	then
+		main
+	else
+		opcao_7
+	fi
 }
 
 opcao_7(){
@@ -188,7 +221,12 @@ opcao_7(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $volta_menu -eq 0 ]
+	then
+		main
+	else
+		opcao_8
+	fi
 }
 
 opcao_8(){
@@ -198,7 +236,12 @@ opcao_8(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $volta_menu -eq 0 ]
+	then
+		main
+	else
+		opcao_9
+	fi
 }
 
 opcao_9(){
@@ -207,7 +250,12 @@ opcao_9(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $volta_menu -eq 0 ]
+	then
+		main
+	else
+		opcao_10
+	fi
 }
 
 opcao_10(){
@@ -216,7 +264,12 @@ opcao_10(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
+	if [ $volta_menu -eq 0 ]
+	then
+		main
+	else
+		opcao_11
+	fi
 }
 
 opcao_11(){
@@ -226,66 +279,12 @@ opcao_11(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	main
 }	
 
 opcao_12(){
+	volta_menu=1
 	clear
-	echo Atualizando sistema!
-	sudo apt-get update
-	sudo apt-get upgrade -y
-	forca_instalacao
-	echo Atualizacao concluida!
-	echo Baixando e instalando Atom!
-	wget https://atom.io/download/deb -O "${DESTDIR}"/atom
-	sudo dpkg -i atom
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Chrome
-	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O "${DESTDIR}"/chrome
-	sudo dpkg -i chrome
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Dropbox
-	wget https://www.dropbox.com/download?dl=packages/debian/dropbox_2015.10.28_amd64.deb -O "${DESTDIR}"/dropbox
-	sudo dpkg -i dropbox
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Opera
-	wget http://deb.opera.com/opera/pool/non-free/o/opera-stable/opera-stable_43.0.2442.806_amd64.deb -O "${DESTDIR}"/opera
-	sudo dpkg -i opera
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Spotify
-	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
-	echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
-	sudo apt-get update
-	sudo apt-get install spotify-client -y
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando virtualbox
-	wget download.virtualbox.org/virtualbox/5.1.14/virtualbox-5.1_5.1.14-112924~Debian~jessie_amd64.deb -O "${DESTDIR}"/virtualbox
-	sudo dpkg -i virtualbox
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Vim
-	sudo apt-get install vim -y
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Vlc
-	sudo apt-get install vlc -y
-	forca_instalacao
-	echo Baixando e instalando Whatsapp
-	wget "https://etecspgov-my.sharepoint.com/personal/weslei_pinto_etec_sp_gov_br/_layouts/15/guestaccess.aspx?docid=19ed46acea92b4954b9ad85ca31b04b41&authkey=AYA1XB8vdIevrDSE-SO0m-I" -O "${DESTDIR}"/whatsie
-	dpkg -i whatsie
-	forca_instalacao
-	echo Insltalacao concluida!
-	echo Baixando e instalando Telegram
-	wget https://telegram.org/dl/desktop/linux -O "${DESTDIR}"/telegram
-	tar xvf telegram
-	cd Telegram
-	chmod +x Telegram
-	./Telegram
+	opcao_1
 	forca_instalacao
 	echo Insltalacoes concluidas!
 	echo -n Voce deseja ficar com os pacotes em sua maquina? [Y/n] ; read opcao
