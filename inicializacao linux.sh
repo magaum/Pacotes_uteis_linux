@@ -13,31 +13,6 @@
 DESTDIR=${DESTDIR:-$(pwd)}
 
 main(){
-	clear
-	echo Instalador de pacotes automatico!
-	echo
-	echo Pacotes e funções disponíveis:
-	echo 1 - Atualizar sistema
-	echo 2 - Atom
-	echo 3 - Chrome
-	echo 4 - Dropbox
-	echo 5 - Opera
-	echo 6 - Spotify
-	echo 7 - Telegram
-	echo 8 - Virtualbox
-	echo 9 - Vim
-	echo 10 - Vlc
-	echo 11 - Whatsapp
-	echo 12 - Instalar tudo
-	echo 13 - Cancelar
-	echo
-	echo -n Selecione um pacote para baixar e instalar: ; read opcao
-
-	tratativa
-	escolhas "$opcao"
-}
-
-menu(){
 	echo Instalador de pacotes automatico!
 	echo
 	echo Pacotes e funções disponíveis:
@@ -57,11 +32,10 @@ menu(){
 	echo
 	echo -n Selecione um pacote para baixar e instalar: ; read opcao
 	clear
-
+	
 	tratativa
 	escolhas "$opcao"
 }
-
 
 tratativa(){
 	while [ $opcao -le 0 -o $opcao -ge 14 ]
@@ -148,7 +122,7 @@ opcao_1(){
 	sudo apt-get upgrade -y
 	forca_instalacao
 	echo Atualizacao concluida!
-	menu
+	main
 }
 
 opcao_2(){	
@@ -158,7 +132,7 @@ opcao_2(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_3(){	
@@ -168,7 +142,7 @@ opcao_3(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_4(){
@@ -178,7 +152,7 @@ opcao_4(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_5(){
@@ -189,7 +163,7 @@ opcao_5(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_6(){
@@ -201,7 +175,7 @@ opcao_6(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_7(){
@@ -214,7 +188,7 @@ opcao_7(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_8(){
@@ -224,7 +198,7 @@ opcao_8(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }
 
 opcao_9(){
@@ -252,7 +226,7 @@ opcao_11(){
 	forca_instalacao
 	clear
 	echo Insltalacao concluida!
-	menu
+	main
 }	
 
 opcao_12(){
