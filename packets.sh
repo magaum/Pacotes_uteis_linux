@@ -32,19 +32,19 @@ main(){
 		--width="350" \
 		--height="400" \
 		--text="
-1 - Atualizar sistema
-2 - Atom
-3 - Chrome
-4 - Dropbox
-5 - Opera
-6 - Spotify
-7 - Telegram
-8 - Virtualbox
-9 - Vim
-10 - VLC
-11 - Whatsapp
-12 - Instalar tudo
-13 - Cancelar
+	1 - Atualizar sistema
+	2 - Atom
+	3 - Chrome
+	4 - Dropbox
+	5 - Opera
+	6 - Spotify
+	7 - Telegram
+	8 - Virtualbox
+	9 - Vim
+	10 - VLC
+	11 - Whatsapp
+	12 - Instalar tudo
+	13 - Cancelar
 "
 )
 	tratativa
@@ -113,8 +113,8 @@ escolhas(){
 
 		"13")
 			clear
-			echo -n Voce realmente deseja sair? [Y/n] ; read opcao
-			while [ $opcao != "Y" ] && [ $opcao != "n" ]
+			echo -n Voce realmente deseja sair? [y/n] ; read opcao
+			while [ $opcao != "y" ] && [ $opcao != "n" ]
 			do
 				clear
 				echo -n Voce realmente deseja sair? [Y/n] ; read opcao
@@ -122,9 +122,9 @@ escolhas(){
 				if [ $opcao = "n" ]
 				then
 					main
-				elif [ $opcao = "Y" ]
+				elif [ $opcao = "y" ]
 				then
-					fim
+					exit
 				fi
 		;;
 	esac
@@ -132,10 +132,8 @@ escolhas(){
 
 opcao_1(){
 	clear
-	sudo apt-get update
-	sudo apt-get upgrade -y
-	forca_instalacao
-	
+	apt-get update
+	apt-get upgrade -f -y
 	if [ $1 -eq 1 ];then
 		echo "Iniciando proxima instalacao"
 		opcao_2 1
@@ -147,10 +145,9 @@ opcao_1(){
 opcao_2(){	
 	echo Baixando e instalando Atom!
 	wget https://atom.io/download/deb -O "${DESTDIR}"/atom
-	sudo dpkg -i atom
-	forca_instalacao
+	dpkg -i atom
 	clear
-	echo Insltalacao concluida!
+	echo Instalacao concluida!
 	if [ $1 -eq 1 ];then
 		echo "Iniciando proxima instalacao"
 		opcao_3 1
@@ -162,10 +159,9 @@ opcao_2(){
 opcao_3(){	
 	echo Baixando e instalando Chrome
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O "${DESTDIR}"/chrome
-	sudo dpkg -i chrome
-	forca_instalacao
+	dpkg -i chrome
 	clear
-	echo Insltalacao concluida!
+	echo Instalacao concluida!
 	if [ $1 -eq 1 ];then
 		echo "Iniciando proxima instalacao"
 		opcao_4 1
@@ -177,10 +173,9 @@ opcao_3(){
 opcao_4(){
 	echo Baixando e instalando Dropbox
 	wget https://www.dropbox.com/download?dl=packages/debian/dropbox_2015.10.28_amd64.deb -O "${DESTDIR}"/dropbox
-	sudo dpkg -i dropbox
-	forca_instalacao
+	dpkg -i dropbox
 	clear
-	echo Insltalacao concluida!
+	echo Instalacao concluida!
 	if [ $1 -eq 1 ];then
 		echo "Iniciando proxima instalacao"
 		opcao_5 1
@@ -191,12 +186,12 @@ opcao_4(){
 
 opcao_5(){
 	echo Baixando e instalando Opera
-	sudo apt-get install apt-transport-https
+	apt-get install apt-transport-https
 	wget http://deb.opera.com/opera/pool/non-free/o/opera-stable/opera-stable_43.0.2442.806_amd64.deb -O "${DESTDIR}"/opera
-	sudo dpkg -i opera
-	forca_instalacao
+	dpkg -i opera
+	apt-get install -f -y
 	clear
-	echo Insltalacao concluida!
+	echo Instalacao concluida!
 	if [ $1 -eq 1 ];then
 		echo "Iniciando proxima instalacao"
 		opcao_6 1
@@ -207,13 +202,12 @@ opcao_5(){
 
 opcao_6(){
 	echo Baixando e instalando Spotify
-	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
+	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
 	echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
-	sudo apt-get update
-	sudo apt-get install spotify-client
-	forca_instalacao
+	apt-get update
+	apt-get install -f -y spotify-client
 	clear
-	echo Insltalacao concluida!
+	echo Instalacao concluida!
 	if [ $1 -eq 1 ];then
 		echo "Iniciando proxima instalacao"
 		opcao_7 1
@@ -229,9 +223,8 @@ opcao_7(){
 	cd Telegram
 	chmod +x Telegram
 	./Telegram
-	forca_instalacao
 	clear
-	echo Insltalacao concluida!
+	echo Instalacao concluida!
 	if [ $1 -eq 1 ];then
 		echo "Iniciando proxima instalacao"
 		opcao_8 1
@@ -243,10 +236,9 @@ opcao_7(){
 opcao_8(){
 	echo Baixando e instalando virtualbox
 	wget download.virtualbox.org/virtualbox/5.1.14/virtualbox-5.1_5.1.14-112924~Debian~jessie_amd64.deb -O "${DESTDIR}"/virtualbox
-	sudo dpkg -i virtualbox
-	forca_instalacao
+	dpkg -i virtualbox
 	clear
-	echo Insltalacao concluida!
+	echo Instalacao concluida!
 	if [ $1 -eq 1 ];then
 		echo "Iniciando proxima instalacao"
 		opcao_9 1
@@ -258,10 +250,9 @@ opcao_8(){
 
 opcao_9(){
 	echo Baixando e instalando Vim
-	sudo apt-get install vim -y
-	forca_instalacao
+	apt-get install vim -f -y #Instalacoes sendo forcada para evitar erros
 	clear
-	echo Insltalacao concluida!
+	echo Instalacao concluida!
 	if [ $1 -eq 1 ];then
 		echo "Iniciando proxima instalacao"
 		opcao_10 1
@@ -273,10 +264,9 @@ opcao_9(){
 
 opcao_10(){
 	echo Baixando e instalando VLC
-	sudo apt-get install vlc -y
-	forca_instalacao
+	apt-get install vlc -f -y
 	clear
-	echo Insltalacao concluida!
+	echo Instalacao concluida!
 	if [ $1 -eq 1 ];then
 		echo "Iniciando proxima instalacao"
 		opcao_11 1
@@ -289,9 +279,9 @@ opcao_11(){
 	echo Baixando e instalando Whatsapp
 	wget "https://etecspgov-my.sharepoint.com/personal/weslei_pinto_etec_sp_gov_br/_layouts/15/guestaccess.aspx?docid=19ed46acea92b4954b9ad85ca31b04b41&authkey=AYA1XB8vdIevrDSE-SO0m-I" -O "${DESTDIR}"/whatsie
 	dpkg -i whatsie
-	forca_instalacao
+	apt-get install -f -y
 	clear
-	echo Insltalacao concluida!
+	echo Instalacao concluida!
 	if [ $1 -eq 1 ];then
 		echo "Instalacoes concluidas"
 	else
@@ -303,27 +293,19 @@ opcao_11(){
 opcao_12(){
 
 	opcao_1 1
-	echo -n Voce deseja ficar com os pacotes em sua maquina? [Y/n] ; read opcao
+	echo -n Voce deseja ficar com os pacotes em sua maquina? [y/n] ; read opcao
 	while [ $opcao != "y" ] && [ $opcao != "n" ]
 		do
 			clear
-			echo -n Voce deseja ficar com os pacotes em sua maquina? [Y/n] ; read opcao
+			echo -n Os pacotes podem ser removidos? [y/n] ; read opcao
 		done
-			if [ $opcao = "n" ]
+			if [ $opcao = "y" ]
 			then
 				rm "${DESTDIR}"/atom; rm "${DESTDIR}"/chrome; rm "${DESTDIR}"/dropbox; rm "${DESTDIR}"/opera; rm "${DESTDIR}"/telegram; rm "${DESTDIR}"/virtualbox; rm "${DESTDIR}"/whatsie
-			elif [ $opcao = "y" ]
+			elif [ $opcao = "n" ]
 			then
-				fim
+				exit
 			fi
-}
-
-forca_instalacao(){
-	sudo apt-get install -f -y
-}
-
-fim(){
-	exit
 }
 
 ROT=$(id -u)
